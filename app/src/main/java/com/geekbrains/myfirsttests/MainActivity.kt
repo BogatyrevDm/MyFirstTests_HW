@@ -20,11 +20,29 @@ class MainActivity : AppCompatActivity() {
 
             saveButton.setOnClickListener {
                 if (emailValidator.isValid) {
-                    Toast.makeText(this@MainActivity, getString(R.string.valid_email), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this@MainActivity,
+                        getString(R.string.valid_email),
+                        Toast.LENGTH_SHORT
+                    ).show()
                 } else {
                     val errorEmail = getString(R.string.invalid_email)
                     emailInput.error = errorEmail
                     Toast.makeText(this@MainActivity, errorEmail, Toast.LENGTH_SHORT).show()
+                }
+                if (passwordsAreEqual(
+                        passwordInput.text.toString(),
+                        repeatPasswordInput.text.toString()
+                    )
+                ) {
+                    Toast.makeText(
+                        this@MainActivity,
+                        getString(R.string.passwords_match),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } else {
+                    val errorPassword = getString(R.string.passwords_error)
+                    Toast.makeText(this@MainActivity, errorPassword, Toast.LENGTH_SHORT).show()
                 }
             }
         }
